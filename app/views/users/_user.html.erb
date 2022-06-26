@@ -1,0 +1,27 @@
+<b>Id:</b>
+  <%= link_to user.id, user_path(user) %>
+<br>
+<b>Email:</b>
+  <%= user.email %>
+<br>
+<b>Password:</b>
+  <%= user.password %>
+<br>
+<b>Confirmation:</b>
+  <%= user.confirmed? %>
+<br>
+<b>Sign_in count:</b>
+  <%= user.sign_in_count %>
+<br>
+<b>Current sign_in at:</b>
+  <%= user.current_sign_in_at  %>
+<br>
+<b>Last sign_in at:</b>
+  <%= user.last_sign_in_at %>
+<br>
+<b>Current sign_in IP:</b>
+  <%= user.current_sign_in_ip %>
+<br>
+<b>Last sign_in IP:</b>
+  <%= user.last_sign_in_ip %>
+<br>

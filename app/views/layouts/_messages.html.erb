@@ -1,0 +1,5 @@
+<% if notice.present? %>
+  <p class="notice bg-success text-center"><%= notice %></p>
+<%elsif alert.present? %>
+  <p class="alert bg-danger text-center"><%= alert %></p>
+<% end %>

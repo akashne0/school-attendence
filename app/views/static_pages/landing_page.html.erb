@@ -1,6 +1,10 @@
 <h1>StaticPages#landing_page</h1>
 <p>Find me in app/views/static_pages/landing_page.html.erb</p>
 
-<button class="btn btn primary">Thanks Yaro! It works!</button>
+<button class="btn btn danger">Thanks Yaro! It works!</button>
+<i class="fa fa-home" aria-hidden="true"> cart</i>
 
-<%= link_to 'Privacy Policy', static_pages_privacy_policy_path, class:"btn btn-primary" %>
+<%= link_to static_pages_privacy_policy_path, class:"btn btn-lg btn-warning" do %>
+  <i class="fa fa-file-word-o" aria-hidden="true"></i>
+  Privacy Policy
+<% end %>
