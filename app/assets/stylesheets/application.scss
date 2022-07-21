@@ -14,4 +14,25 @@
  *= require_self
  *= require font-awesome
  *= require bootstrap
+
  */
+ @import "toastr";
+
+body{
+    background: #f7dce5 !important;
+}
+
+html{
+  margin: 0;
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+}
+
+footer{
+  margin-top: auto;
+}

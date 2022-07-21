@@ -21,12 +21,27 @@ gem 'font-awesome-rails'
 gem 'sprockets-rails'
 gem 'jquery-rails'
 
+# for messages
+gem 'toastr-rails'
+
+# for captcha
+gem 'invisible_captcha'
+
+gem 'exception_notification'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
-
+# to invite people
+gem 'devise_invitable', '~> 2.0.0'
+# to login with google
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-github'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
