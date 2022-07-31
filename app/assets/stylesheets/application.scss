@@ -14,9 +14,11 @@
  *= require_self
  *= require font-awesome
  *= require bootstrap
+ *= require simple_calendar
 
  */
  @import "toastr";
+@import "simple_calendar";
 
 body{
     background: #f7dce5 !important;

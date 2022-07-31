@@ -14,6 +14,7 @@
   </head>
 
   <body>
+    <%# rails g scaffold Lesson user:references classroom:belongs_to course:belongs_to status start:datetime --no-helper --no-assets --no-controller-specs --no-view-specs --no-test-framework --no-jbuilder %>
 
     <%= render 'layouts/header' %>
     <div class="container">
@@ -24,7 +25,7 @@
   <footer class="bg-dark text-light">
     <div class="container">
       <p>This is a footer</p>
-      <p><%= link_to 'Privacy Policy', static_pages_privacy_policy_path %></p>
+      <p><%= link_to 'Privacy Policy', privacy_policy_path %></p>
     </div>
   </footer>
 </html>

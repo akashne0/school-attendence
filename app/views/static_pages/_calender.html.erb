@@ -1,0 +1,46 @@
+<div class="card shadow">
+  <div class="card-body">
+    <div class="table-responsive">
+      <%= month_calendar(events: @lessons, attribute: :start) do |date, lessons| %>
+        <%= date %>
+
+        <ul class="list-group">
+          <% lessons.each do |lesson| %>
+            <li class="list-group-item">
+
+              <%= link_to lesson.start.strftime("%H:%M"), edit_course_lesson_path(lesson.course, lesson) %>
+              <%= status_label(lesson.status) %>
+
+              <% unless @course.present? %>
+                Course:
+                <%= link_to lesson.course_id, lesson.course %>
+              <% end %>
+              <% unless @user.present? %>
+                User:
+                <%= link_to lesson.user, lesson.user %>
+              <% end %>
+              <% unless @classroom.present? %>
+                Classroom:
+                <%= link_to lesson.classroom, lesson.classroom %>
+              <% end %>
+
+              <%= lesson.teacher_price_start_cents %> /
+              <%= lesson.teacher_price_final_cents %>
+
+              <ul class="list-group">
+                <% lesson.attendances.each do |attendance| %>
+                  <li class="list-group-item">
+                    <%= link_to attendance.user, user_path(attendance.user) %>
+                    <%= status_label(attendance.status) %>
+                    <%= attendance.student_price_start_cents %> /
+                    <%= attendance.student_price_final_cents %>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>

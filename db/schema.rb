@@ -10,10 +10,74 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_30_170631) do
+ActiveRecord::Schema.define(version: 2022_07_31_183009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attendances", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "lesson_id", null: false
+    t.string "status", default: "planned"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "student_price_start", default: 0, null: false
+    t.integer "student_price_final", default: 0, null: false
+    t.index ["lesson_id"], name: "index_attendances_on_lesson_id"
+    t.index ["user_id"], name: "index_attendances_on_user_id"
+  end
+
+  create_table "classrooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "classroom_id", null: false
+    t.bigint "service_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "days", default: {}, null: false
+    t.datetime "start_time"
+    t.index ["classroom_id"], name: "index_courses_on_classroom_id"
+    t.index ["service_id"], name: "index_courses_on_service_id"
+    t.index ["user_id"], name: "index_courses_on_user_id"
+  end
+
+  create_table "enrollments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "course_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_enrollments_on_course_id"
+    t.index ["user_id"], name: "index_enrollments_on_user_id"
+  end
+
+  create_table "lessons", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "classroom_id", null: false
+    t.bigint "course_id", null: false
+    t.string "status", default: "planned"
+    t.datetime "start"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "teacher_price_start", default: 0, null: false
+    t.integer "teacher_price_final", default: 0, null: false
+    t.index ["classroom_id"], name: "index_lessons_on_classroom_id"
+    t.index ["course_id"], name: "index_lessons_on_course_id"
+    t.index ["user_id"], name: "index_lessons_on_user_id"
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.string "name"
+    t.integer "duration"
+    t.integer "client_price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "teacher_price", default: 0, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -48,6 +112,9 @@ ActiveRecord::Schema.define(version: 2022_06_30_170631) do
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
+    t.integer "student_total", default: 0, null: false
+    t.integer "teacher_total", default: 0, null: false
+    t.integer "balance", default: 0, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
@@ -58,4 +125,14 @@ ActiveRecord::Schema.define(version: 2022_06_30_170631) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "attendances", "lessons"
+  add_foreign_key "attendances", "users"
+  add_foreign_key "courses", "classrooms"
+  add_foreign_key "courses", "services"
+  add_foreign_key "courses", "users"
+  add_foreign_key "enrollments", "courses"
+  add_foreign_key "enrollments", "users"
+  add_foreign_key "lessons", "classrooms"
+  add_foreign_key "lessons", "courses"
+  add_foreign_key "lessons", "users"
 end

@@ -28,6 +28,11 @@ gem 'toastr-rails'
 gem 'invisible_captcha'
 
 gem 'exception_notification'
+gem 'simple_form'
+gem 'ice_cube'
+gem "simple_calendar", "~> 2.4"
+gem 'cocoon'
+gem 'money-rails', '~>1.12'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
