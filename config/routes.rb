@@ -21,6 +21,9 @@ Rails.application.routes.draw do
 
     end
   end
+  devise_scope :user do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
   root 'static_pages#landing_page'
   get 'privacy_policy', to:'static_pages#privacy_policy'
   get 'calender', to:'static_pages#calender'
